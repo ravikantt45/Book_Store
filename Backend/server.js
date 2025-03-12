@@ -36,6 +36,8 @@ app.use("/uploads", express.static("uploads"));
 // Login
 app.post("/alogin", (req, resp) => {
   const { email, password } = req.body;
+  console.log("Email -> ",email);
+  console.log("Password -> ",password);
   Admin.findOne({ email: email }).then((user) => {
     if (user) {
       if (user.password === password) {
@@ -43,7 +45,7 @@ app.post("/alogin", (req, resp) => {
           Status: "Success",
           user: { id: user.id, name: user.name, email: user.email },
         });
-      } else {
+      } else {  
         resp.json("login fail");
       }
     } else {

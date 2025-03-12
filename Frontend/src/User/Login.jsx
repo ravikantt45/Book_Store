@@ -13,12 +13,14 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let payload = { email, password };
+    console.log("Email -> ",email);
+    console.log("Password -> ",password);
     axios
       .post("http://localhost:4000/login", payload)
       .then((res) => {
-        console.log("login: " + res.data.Status);
+        console.log(" login response from : " + res.data.Status);
         if (res.data.Status === "Success") {
-          console.log(res.data.user);
+          console.log("THe response data is-> ",res.data.user);
           localStorage.setItem('user', JSON.stringify(res.data.user));
             navigate('/uhome')
            alert("login successful")
